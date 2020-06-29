@@ -35,12 +35,13 @@ router.post("/add", async (req, res) => {
         }
       );
 
-      User.findOneAndUpdate({ _id: UserID }, { wo_routine: workout.id }).exec(
-        (err, res) => {
-          if (err) console.log(err);
-          else console.log(res);
-        }
-      );
+      User.findOneAndUpdate(
+        { _id: UserID },
+        { $push: { wo_routine: workout.id } }
+      ).exec((err, res) => {
+        if (err) console.log(err);
+        else console.log(res);
+      });
     }
   });
 });
