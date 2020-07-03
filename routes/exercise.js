@@ -6,6 +6,19 @@ const jwt = require("jsonwebtoken");
 
 const bcrypt = require("bcryptjs");
 
+//SHOW EXERCISES WITH :EQUIPMENT
+router.get("/single/:id", async (req, res) => {
+  const { id } = req.params;
+
+  console.log(id);
+  const showExercises = await Exercise.findOne({ _id: id }).limit(1);
+  if (!showExercises)
+    return res
+      .status(400)
+      .send("Something went wrong or no exercises available");
+  res.status(200).send(showExercises);
+});
+
 router.post("/add", async (req, res) => {
   //CREATE NEW EXERCISE
 
@@ -18,7 +31,6 @@ router.post("/add", async (req, res) => {
   });
 
   try {
-    // console.log("req.body.name : ", req.body.name)
     const savedExercise = await exercise.save();
     res.send("Created Exercise(s)");
     console.log(savedExercise);
@@ -39,10 +51,7 @@ router.get("/:equipment", async (req, res) => {
     return res
       .status(400)
       .send("Something went wrong or no exercises available");
-  // console.log("Loaded exercises : ", showExercises.length);
   res.status(200).send(showExercises);
-  // return res.status(200).send(`${showExercises.length } exercises loaded`);
-  // console.log("Exercises have been loaded");
 });
 
 //SHOW OPTIONS (musclegroups to choose) WITH SPECIFIC :EQUIPMENT
@@ -56,10 +65,7 @@ router.get("/:equipment/options", async (req, res) => {
     return res
       .status(400)
       .send("Something went wrong or no exercises available");
-  // console.log("Loaded exercises : ", showExercises.length);
   res.status(200).send(showExercises);
-  // return res.status(200).send(`${showExercises.length } exercises loaded`);
-  // console.log("Exercises have been loaded");
 });
 
 //SHOW EXERCISES WITH :EQUIPMENT && :MUSCLEGROUP
@@ -74,10 +80,7 @@ router.get("/:equipment/:musclegroup", async (req, res) => {
     return res
       .status(400)
       .send("Something went wrong or no exercises available");
-  // console.log("Loaded exercises : ", showExercises.length);
   res.status(200).send(showExercises);
-  // return res.status(200).send(`${showExercises.length } exercises loaded`);
-  // console.log("Exercises have been loaded");
 });
 
 //SHOW EXERCISES
@@ -87,10 +90,7 @@ router.get("/", async (req, res) => {
     return res
       .status(400)
       .send("Something went wrong or no exercises available");
-  // console.log("Loaded exercises : ", showExercises.length);
   res.status(200).send(showExercises);
-  // return res.status(200).send(`${showExercises.length } exercises loaded`);
-  // console.log("Exercises have been loaded");
 });
 
 module.exports = router;

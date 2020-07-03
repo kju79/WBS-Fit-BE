@@ -8,6 +8,7 @@ const exerciseRoute = require("./routes/exercise");
 const equipmentRoute = require("./routes/equipment");
 const musclegroupRoute = require("./routes/musclegroup");
 const workoutRoute = require("./routes/workout");
+const browseRoute = require("./routes/browse");
 const cors = require("cors");
 
 dotenv.config();
@@ -25,13 +26,17 @@ app.use(express.json());
 
 //route middleware
 app.use("/api/user", authRoute);
-app.use("/api/exercise", exerciseRoute);
-app.use("/api/exercise/:equipment", exerciseRoute);
-app.use("/api/exercise/:equipment/:musclegroup", exerciseRoute);
+app.use("/api/user/routine/:id", authRoute); // show User's Workout Routine
+app.use("/api/exercise", exerciseRoute); // show all exercises in DB
+app.use("/api/single/:id", exerciseRoute); // GET specific exercise
 
-app.use("/api/equipment", equipmentRoute);
+app.use("/api/exercise/:equipment", exerciseRoute); //show all exercises filtered by equipment
+app.use("/api/exercise/:equipment/:musclegroup", exerciseRoute); //show all exercises filtered by equipment&musclegroup
 
-app.use("/api/musclegroup", musclegroupRoute);
+app.use("/api/equipment", equipmentRoute); // show all equipment categories
+app.use("/api/musclegroup", musclegroupRoute); // show all musclegroup categories
+
 app.use("/api/workout", workoutRoute);
+app.use("/api/browse/", browseRoute);
 
 app.listen(3002, () => console.log("Backend of FINAL-PROJECT is running"));

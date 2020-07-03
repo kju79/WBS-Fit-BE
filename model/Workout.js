@@ -19,10 +19,15 @@ const workoutSchema = new Schema({
     max: 1024,
     min: 6,
   },
-  ratings: {
-    type: Array,
-    max: 255,
+  wo_type: {
+    type: String,
+    max: 1024,
     min: 6,
+  },
+  ratings: {
+    type: [Number],
+    max: 5,
+    min: 0,
   },
   exercises: [{ type: Schema.ObjectId, ref: "Exercise" }],
   creator: { type: Schema.ObjectId, ref: "User" },
