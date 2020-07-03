@@ -6,7 +6,7 @@ router.get("/:workouttype", async (req, res) => {
   // console.log("workout type : ", type);
 
   const { workouttype } = req.params;
-
+  //
   console.log("reqparams :", req.params);
   console.log("type :", workouttype);
 

@@ -3,6 +3,7 @@ const Workout = require("../model/Workout");
 const Exercise = require("../model/Exercise");
 const User = require("../model/User");
 
+//
 //CREATE NEW WORKOUT
 router.post("/add", async (req, res) => {
   const UserID = "5efca5151e086210185f4f2a";
@@ -69,5 +70,5 @@ router.get("/top5", async (req, res) => {
   ]);
   return res.json(top5);
 });
-
+//
 module.exports = router;

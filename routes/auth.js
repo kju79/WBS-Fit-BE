@@ -5,7 +5,7 @@ const schemaLogin = require("../validate_login");
 const jwt = require("jsonwebtoken");
 
 const bcrypt = require("bcryptjs");
-
+//
 router.post("/register", async (req, res) => {
   // //VAL THE DATA BEFORE STORING USERDATA
 

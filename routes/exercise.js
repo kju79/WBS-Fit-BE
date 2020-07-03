@@ -67,7 +67,7 @@ router.get("/:equipment/options", async (req, res) => {
       .send("Something went wrong or no exercises available");
   res.status(200).send(showExercises);
 });
-
+//
 //SHOW EXERCISES WITH :EQUIPMENT && :MUSCLEGROUP
 router.get("/:equipment/:musclegroup", async (req, res) => {
   const { musclegroup, equipment } = req.params;
