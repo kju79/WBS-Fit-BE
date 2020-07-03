@@ -39,4 +39,8 @@ app.use("/api/musclegroup", musclegroupRoute); // show all musclegroup categorie
 app.use("/api/workout", workoutRoute);
 app.use("/api/browse/", browseRoute);
 
-app.listen(3002, () => console.log("Backend of FINAL-PROJECT is running"));
+app.listen(process.env.PORT || 5000, () =>
+  console.log(
+    `Backend of FINAL-PROJECT is running on Port : ${process.env.PORT}`
+  )
+);
