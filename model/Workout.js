@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { number } = require("@hapi/joi");
 const Schema = mongoose.Schema;
 
 const workoutSchema = new Schema({
@@ -30,7 +31,18 @@ const workoutSchema = new Schema({
     min: 0,
   },
   exercises: [{ type: Schema.ObjectId, ref: "Exercise" }],
+
+  standardSet: [
+    {
+      exercise: { type: Schema.ObjectId, ref: "Exercise" },
+      reps: { type: Number, max: 15, min: 1 },
+      weight: { type: Number, max: 400, min: 0 },
+      sets: { type: Number, max: 10, min: 1 },
+    },
+  ],
+
   creator: { type: Schema.ObjectId, ref: "User" },
 });
 
 module.exports = mongoose.model("Workout", workoutSchema);
+//

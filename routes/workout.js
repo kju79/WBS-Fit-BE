@@ -6,6 +6,7 @@ const User = require("../model/User");
 //
 //CREATE NEW WORKOUT
 router.post("/add", async (req, res) => {
+  // console.log(typeof req.body.standardSet[0].reps);
   const UserID = "5efca5151e086210185f4f2a";
   const workout = await new Workout({
     name: req.body.name,
@@ -14,12 +15,14 @@ router.post("/add", async (req, res) => {
     wo_type: req.body.wo_type,
     ratings: req.body.ratings,
     exercises: req.body.exercises,
+    standardSet: req.body.standardSet,
     creator: UserID,
   });
 
   workout.save((err, workout) => {
     if (err) {
-      return res.send({ errorcode: "Workout creation failed" });
+      console.log(err);
+      return res.send({ errorcode: "Workout creation failed", err });
     } else {
       //   console.log("Saved Workout ID : ", workout.id);
       console.log("Workout created : ", workout._id);
@@ -32,7 +35,7 @@ router.post("/add", async (req, res) => {
                 { $push: { workout: workout.id } }
               ).exec((err, res) => {
                 if (err) console.log(err);
-                else console.log("Updated Exercises collection");
+                else res.send("Updated Exercises collection");
               });
             });
           }
