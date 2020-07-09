@@ -34,7 +34,9 @@ const workoutSchema = new Schema({
 
   standardSet: [
     {
-      exercise: { type: Schema.ObjectId, ref: "Exercise" },
+      exercise_id: { type: Schema.ObjectId },
+      exercise_name: { type: String },
+      exercise_avatar: { type: String },
       reps: { type: Number, max: 15, min: 1 },
       weight: { type: Number, max: 400, min: 0 },
       sets: { type: Number, max: 10, min: 1 },
