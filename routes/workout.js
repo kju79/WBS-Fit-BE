@@ -33,9 +33,11 @@ router.post("/add", async (req, res) => {
               Exercise.findOneAndUpdate(
                 { _id: item._id },
                 { $push: { workout: workout.id } }
-              ).exec((err, res) => {
+              ).exec((err) => {
                 if (err) console.log(err);
-                else res.send("Updated Exercises collection");
+                else {
+                  console.log("Updated Exercises collection");
+                }
               });
             });
           }
@@ -45,8 +47,8 @@ router.post("/add", async (req, res) => {
       User.findOneAndUpdate(
         { _id: UserID },
         { $push: { wo_routine: workout } }
-      ).exec((err, res) => {
-        if (err) res.send(err);
+      ).exec((err) => {
+        if (err) return res.send(err);
         else console.log("Workout was put into User Routine :", workout.id);
       });
     }
