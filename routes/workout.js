@@ -7,7 +7,7 @@ const User = require("../model/User");
 //CREATE NEW WORKOUT
 router.post("/add", async (req, res) => {
   // console.log(typeof req.body.standardSet[0].reps);
-  const UserID = "5f083fa8891ad414a8d97cf4";
+  const UserID = "5f088f1ff4dfab2b2072f0a2";
   const workout = await new Workout({
     name: req.body.name,
     picture: req.body.picture,
